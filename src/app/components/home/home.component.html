@@ -1,0 +1,116 @@
+<section>
+  <div class="row g-0">
+    <div class="col-md-9">
+      <owl-carousel-o [options]="mainSlider">
+        <ng-template carouselSlide>
+          <img
+            src="./assets/images/main-slider-1.jpeg"
+            height="400"
+            class="w-100"
+            alt=""
+        /></ng-template>
+        <ng-template carouselSlide>
+          <img
+            src="./assets/images/main-slider-2.jpeg"
+            height="400"
+            class="w-100"
+            alt=""
+        /></ng-template>
+        <ng-template carouselSlide>
+          <img
+            src="./assets/images/main-slider-3.jpeg"
+            height="400"
+            class="w-100"
+            alt=""
+        /></ng-template>
+      </owl-carousel-o>
+    </div>
+    <div class="col-md-3">
+      <img
+        src="./assets/images/slide-1.jpeg"
+        class="w-100"
+        height="200"
+        alt=""
+      />
+      <img
+        src="./assets/images/slide-2.jpeg"
+        class="w-100"
+        height="200"
+        alt=""
+      />
+    </div>
+  </div>
+</section>
+<section *ngIf="categories.length > 0">
+  <h4 class="h6">Shop Popular Category:</h4>
+  <owl-carousel-o [options]="categoryCustomOptions">
+    <ng-container *ngFor="let category of categories">
+      <ng-template carouselSlide [id]="category._id">
+        <header role="button" [routerLink]="['/categoryDetails', category._id]">
+          <img
+            [src]="category.image"
+            class="object-fit-fill w-100"
+            [alt]="category.name"
+            [title]="category.name"
+            height="150"
+          />
+          <h3 class="h6">{{ category.name }}</h3>
+        </header>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</section>
+
+<section *ngIf="products.length > 0">
+  <h2 class="h6">Shop Popular Product:</h2>
+  <input
+    [(ngModel)]="term"
+    type="text"
+    class="form-control w-50 mx-auto form-control-sm my-3"
+    placeholder="Search..."
+  />
+  <div class="row g-4">
+    <div
+      class="product col-md-2"
+      *ngFor="let product of products | slice : 4 : 22 | search : term"
+    >
+      <div class="position-relative overflow-hidden">
+        <!-- Add -->
+        <i
+          *ngIf="!whishListData.includes(product._id)"
+          class="fa-regular fa-heart heart"
+          (click)="addToWishList(product._id)"
+        ></i>
+        <!-- Remove -->
+        <i
+          *ngIf="whishListData.includes(product._id)"
+          class="fa-solid fa-heart heart"
+          (click)="removeWishList(product._id)"
+        ></i>
+        <header role="button" [routerLink]="['/productDetails', product._id]">
+          <img [src]="product.imageCover" class="w-100" alt="" />
+          <div class="desc">
+            <h6 class="font-sm text-main">{{ product.category.name }}</h6>
+            <p>{{ product.title | cutText }}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span>{{ product.price | currency : "E£" }}</span>
+              <span
+                ><i class="fas fa-star rating-color"></i
+                >{{ product.ratingsAverage }}</span
+              >
+            </div>
+          </div>
+        </header>
+        <footer class="button">
+          <button
+            (click)="addProduct(product._id, btnAdd)"
+            #btnAdd
+            class="add-btn main-btn w-100"
+          >
+            +Add to Cart
+          </button>
+        </footer>
+      </div>
+    </div>
+  </div>
+</section>

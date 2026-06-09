@@ -1,0 +1,71 @@
+<section class="bg-light-main p-3" *ngIf="cartData; else temp">
+  <h1>Shop Cart</h1>
+  <div class="d-flex justify-content-between align-items-center">
+    <p class="text-main">
+      Total Price : {{ cartData.totalCartPrice | currency : "EGP" }}
+    </p>
+    <button #btnClear class="main-btn" (click)="clearCart(btnClear)">
+      Clear Cart
+    </button>
+  </div>
+  <div class="row border-bottom py-2" *ngFor="let product of cartData.products">
+    <div class="col-md-1">
+      <div>
+        <img
+          [src]="product.product.imageCover"
+          class="w-100 object-fit-fill"
+          [alt]="product.product.title"
+          [title]="product.product.title"
+        />
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div>
+        <h3 class="h6">{{ product.product.title }}</h3>
+        <p class="text-main">Price:{{ product.price }}</p>
+        <button
+          #btnRemove
+          class="btn p-0 m-0 text-main"
+          (click)="remove(product.product._id, btnRemove)"
+        >
+          <i class="fa fa-trash-can"></i>Remove
+        </button>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <button
+        #btn1
+        class="btn btn-sm border-success me-1"
+        (click)="
+          updateCount(product.product._id, product.count + 1, btn1, btn2)
+        "
+      >
+        +
+      </button>
+      <span>{{ product.count }}</span>
+      <button
+        #btn2
+        class="btn btn-sm border-success ms-1"
+        (click)="
+          updateCount(product.product._id, product.count - 1, btn1, btn2)
+        "
+      >
+        -
+      </button>
+    </div>
+  </div>
+  <footer class="d-flex justify-content-between align-items-center">
+    <button class="main-btn" [routerLink]="['/payment', cartData._id]">
+      Online Payment
+    </button>
+    <button class="main-btn" [routerLink]="['/cashOrder', cartData._id]">
+      Cash Order
+    </button>
+  </footer>
+</section>
+<ng-template #temp>
+  <div class="bg-light-main p-3 text-center">
+    <h2>Your Cart Is Empty....</h2>
+  </div>
+</ng-template>
+<button class="main-btn w-100" routerLink="/allorders">All Orders</button>

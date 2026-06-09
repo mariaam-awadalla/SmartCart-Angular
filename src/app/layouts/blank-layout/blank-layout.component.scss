@@ -1,0 +1,20 @@
+$main-color: #0aad0a;
+.container {
+  padding-top: 80px;
+}
+.btn-up {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 99;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: $main-color;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+}

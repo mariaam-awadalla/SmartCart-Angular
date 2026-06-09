@@ -1,0 +1,47 @@
+<section *ngIf="orderData">
+  <h1 class="h2 text-center my-3">All Orders</h1>
+  <div class="row g-4">
+    <div class="product" *ngFor="let order of orderData; index as i">
+      <h4 class="h6">Order Number :{{ i + 1 }}</h4>
+      <div class="col-md-12">
+        <div>
+          <div class="desc">
+            <h6 class="font-sm text-main">
+              Total Order Price:
+              {{ order.totalOrderPrice | currency : "EGP" }}
+            </h6>
+
+            <p class="font-sm">
+              Order Tax Price:{{ order.taxPrice | currency : "EGP" }}
+            </p>
+            <p class="font-sm">
+              Order Payment Method:{{ order.paymentMethodType }}
+            </p>
+            <p class="font-sm">Order Is Paid :{{ order.isPaid }}</p>
+            <p class="font-sm">Order Is Delivered : {{ order.isDelivered }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngFor="let product of order.cartItems">
+        <div class="col-md-1">
+          <div>
+            <img
+              [src]="product.product.imageCover"
+              class="w-100 object-fit-fill"
+              [alt]="product.product.title"
+              [title]="product.product.title"
+            />
+          </div>
+        </div>
+        <div class="col-md-11">
+          <div>
+            <h3 class="h6">{{ product.product.title }}</h3>
+            <p class="text-main">Price:{{ product.price }}</p>
+            <p>Count:{{ product.count }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

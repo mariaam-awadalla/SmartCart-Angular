@@ -1,0 +1,35 @@
+<section class="w-75 m-auto">
+  <h1 class="h5">CheckOut Session:</h1>
+  <form [formGroup]="orderForm" (ngSubmit)="handelForm()">
+    <div class="form-item">
+      <label for="details">Details:</label>
+      <input
+        type="text"
+        id="details"
+        formControlName="details"
+        class="form-control"
+      />
+    </div>
+    <div class="form-item">
+      <label for="phone">Phone:</label>
+      <input
+        type="tel"
+        id="phone"
+        formControlName="phone"
+        class="form-control"
+      />
+    </div>
+    <div class="form-item">
+      <label for="city">City:</label>
+      <input
+        type="text"
+        id="city"
+        formControlName="city"
+        class="form-control"
+      />
+    </div>
+    <button class="main-btn">
+      Online Payment <img src="./assets/images/visa-1.svg" alt="" />
+    </button>
+  </form>
+</section>

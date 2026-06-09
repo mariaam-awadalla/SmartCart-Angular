@@ -1,0 +1,19 @@
+<section *ngIf="brandData">
+  <div class="row g-4 align-items-center">
+    <div class="col-md-6">
+      <div>
+        <img
+          [src]="brandData.image"
+          class="w-50"
+          [alt]="brandData.name"
+          [title]="brandData.name"
+        />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div>
+        <h2>{{ brandData.name }}</h2>
+      </div>
+    </div>
+  </div>
+</section>

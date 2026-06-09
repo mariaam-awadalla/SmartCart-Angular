@@ -1,0 +1,22 @@
+<section *ngIf="categoryData">
+  <div class="row g-4 align-items-center">
+    <div class="col-md-3">
+      <div>
+        <img [src]="categoryData.image" class="w-100" alt="" />
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div>
+        <h2>{{ categoryData.name }}</h2>
+        <div *ngIf="subCategoryData">
+          <p>Sub Categories:</p>
+          <span
+            class="bg-main rounded rounded-2 p-2 m-2 d-inline-block"
+            *ngFor="let sub of subCategoryData"
+            >{{ sub.name }}</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+<section class="w-75 mx-auto">
+  <h1 class="h5">Enter Your Reset Code:</h1>
+  <form [formGroup]="resetCodeForm" (submit)="handelForm()">
+    <div class="form-item">
+      <label for="resetCode">Reset Code:</label>
+      <input
+        type="text"
+        formControlName="resetCode"
+        class="form-control"
+        id="resetCode"
+      />
+    </div>
+    <button class="main-btn">
+      Send
+      <span *ngIf="isLoading"> <i class="fas fa-spin fa-spinner"></i></span>
+    </button>
+  </form>
+  <p
+    *ngIf="errMsg"
+    class="alert alert-danger p-1 w-50 mx-auto mb-0 text-center"
+  >
+    {{ errMsg }}
+  </p>
+</section>

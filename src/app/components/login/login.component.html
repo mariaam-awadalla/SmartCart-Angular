@@ -1,0 +1,70 @@
+<section class="w-75 mx-auto">
+  <h1 class="h5">Login Now:</h1>
+  <form [formGroup]="loginForm" (submit)="handelForm()">
+    <div class="form-item">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        formControlName="email"
+        class="form-control"
+        id="email"
+      />
+      <div
+        *ngIf="
+          loginForm.get('email')?.errors && loginForm.get('email')?.touched
+        "
+        class="alert alert-danger p-1 small w-50 mx-auto"
+      >
+        <p class="mb-0" *ngIf="loginForm.get('email')?.getError('required')">
+          Email Is Required
+        </p>
+        <p class="mb-0" *ngIf="loginForm.get('email')?.getError('email')">
+          Invalid Email Format
+        </p>
+      </div>
+    </div>
+
+    <div class="form-item">
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        formControlName="password"
+        class="form-control"
+        id="password"
+      />
+      <div
+        *ngIf="
+          loginForm.get('password')?.errors &&
+          loginForm.get('password')?.touched
+        "
+        class="alert alert-danger p-1 small w-50 mx-auto"
+      >
+        <p class="mb-0" *ngIf="loginForm.get('password')?.getError('required')">
+          Password Is Required
+        </p>
+        <p class="mb-0" *ngIf="loginForm.get('password')?.getError('pattern')">
+          Password At Least 6 Characters
+        </p>
+      </div>
+    </div>
+
+    <footer class="d-flex justify-content-between align-items-center">
+      <button [disabled]="loginForm.invalid" class="main-btn">
+        Login
+        <span *ngIf="isLoading"> <i class="fas fa-spin fa-spinner"></i></span>
+      </button>
+      <a
+        role="button"
+        routerLink="/authForgetPassword"
+        class="text-decoration-none"
+        >Forget Password?</a
+      >
+    </footer>
+  </form>
+  <p
+    *ngIf="errMsg"
+    class="alert alert-danger p-1 w-50 mx-auto mb-0 text-center"
+  >
+    {{ errMsg }}
+  </p>
+</section>
