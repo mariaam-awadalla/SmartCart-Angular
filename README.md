@@ -1,4 +1,4 @@
-# ShopSphere
+# SmartCart
 
 A modern e-commerce web application built with Angular, designed to provide a seamless online shopping experience. The platform includes authentication, product browsing, shopping cart management, wishlist functionality, order tracking, and payment integration.
 
